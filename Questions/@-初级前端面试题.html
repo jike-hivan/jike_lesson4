@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<p>@:初级前端面试题</p>
+
+<h1>初级前端面试题</h1>
+
+<h2>HTML部分</h2>
+
+<h4>1. Doctype作用？严格模式与混杂模式如何区分？它们有何意义? </h4>
+
+<ol>
+	<li><code>&lt;!DOCTYPE&gt;</code> 声明位于文档中的最前面的位置，处于 <code>&lt;html&gt;</code> 标签之前。此标签可告知浏览器文档使用哪种 HTML 或 XHTML 规范。</li>
+	<li>所谓的标准模式是指，浏览器按 W3C 标准解析执行代码；怪异模式则是使用浏览器自己的方式解析执行代码，因为不同浏览器解析执行的方式不一样，所以我们称之为怪异模式。</li>
+	<li>浏览器解析时到底使用标准模式还是怪异模式，与你网页中的 DTD 声明直接相关， DTD 声明定义了标准文档的类型（标准模式解析）文档类型，会使浏览器使用相应的方式加载网页并显示，忽略 DTD 声明 , 将使网页进入怪异模式。</li>
+</ol>
+
+<h4>2. HTML5 为什么只需要写 &lt;!DOCTYPE HTML&gt;？</h4>
+
+<blockquote>
+<p>HTML5 不基于 SGML，因此不需要对DTD进行引用，但是需要doctype来规范浏览器的行为（让浏览器按照它们应该的方式来运行）；</p>
+
+<p>而HTML4.01基于SGML,所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型。</p>
+</blockquote>
+
+<h4>3. 行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？</h4>
+
+<ol>
+	<li>行内元素: <code>a b span img input select strong</code></li>
+	<li>块级元素: <code>div ul ol li dl dt dd h1 h2 h3 h4…p &nbsp;</code></li>
+	<li>void元素: <code>&lt;br&gt; &lt;hr&gt; &lt;img&gt; &lt;input&gt; &lt;link&gt; &lt;meta&gt; </code>以及<code>&lt;area&gt; &lt;base&gt; &lt;col&gt; &lt;command&gt; &lt;embed&gt; &lt;keygen&gt; &lt;param&gt; &lt;source&gt; &lt;track&gt; &lt;wbr&gt;</code></li>
+</ol>
+
+<h4>4. 页面导入样式时，使用link和@import有什么区别？</h4>
+
+<ol>
+	<li><code>link</code>属于XHTML标签，而<code>@import</code>是CSS提供的方式</li>
+	<li>加载顺序差别，<code>@import</code>引用的css会等到页面全部下载完再被加载</li>
+	<li>兼容性，　<code>@import</code>必须IE5以上浏览器才能识别</li>
+	<li><code>@import</code> dom不可以控制</li>
+	<li>引入差别 <code>@import</code>可以在CSS中再引入其他样式表</li>
+</ol>
+
+<h4>5. 常见的浏览器内核有哪些？</h4>
+
+<ol>
+	<li>1Trident内核：IE,MaxThon,TT,The World,360,搜狗浏览器等。<code>[又称MSHTML]</code></li>
+	<li>Gecko内核：Netscape6及以上版本，FF,MozillaSuite/SeaMonkey等</li>
+	<li>Presto内核：Opera7及以上。<code>[Opera内核原为：Presto，现为：Blink;]</code></li>
+	<li>Webkit内核：Safari,Chrome等。<code>[ Chrome的：Blink（WebKit的分支）]</code></li>
+</ol>
+
+<h4>6. html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？</h4>
+
+<blockquote>
+<p>HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存储，多任务等功能的增加。</p>
+
+<p>绘画 canvas;</p>
+
+<p>用于媒介回放的 video 和 audio 元素;</p>
+
+<p>本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失;</p>
+
+<p>sessionStorage 的数据在浏览器关闭后自动删除;</p>
+
+<p>语意化更好的内容元素，比如 article、footer、header、nav、section;</p>
+
+<p>表单控件，calendar、date、time、email、url、search;</p>
+
+<p>新的技术webworker, websocket, Geolocation;</p>
+</blockquote>
+
+<p><strong>移除的元素</strong></p>
+
+<blockquote>
+<p>纯表现的元素：basefont，big，center，font, s，strike，tt，u;</p>
+
+<p>对可用性产生负面影响的元素：frame，frameset，noframes；</p>
+</blockquote>
+
+<p><strong>处理兼容性</strong></p>
+
+<blockquote>
+<p>IE8/IE7/IE6支持通过document.createElement方法产生的标签，</p>
+
+<p>可以利用这一特性让这些浏览器支持HTML5新标签，</p>
+
+<p>浏览器支持新标签后，还需要添加标签默认的样式。</p>
+
+<p>当然也可以直接使用成熟的框架、比如html5shim;</p>
+
+<p><code>&lt;!—[if lt IE 9]&gt;&lt;script&gt; src=&quot;http://html5shim.googlecode.com/svn/trunk/html5.js&quot;&lt;/script&gt;&lt;![endif]--&gt;</code></p>
+</blockquote>
+
+<p><strong>如何区分HTML5：</strong></p>
+
+<blockquote>
+<p>DOCTYPE声明\新增的结构元素\功能元素</p>
+</blockquote>
+
+<h4>7. 简述一下你对HTML语义化的理解？</h4>
+
+<blockquote>
+<p>用正确的标签做正确的事情。</p>
+
+<p>html语义化让页面的内容结构化，结构更清晰，便于对浏览器、搜索引擎解析;</p>
+
+<p>即使在没有样式CSS情况下也以一种文档格式显示，并且是容易阅读的;</p>
+
+<p>搜索引擎的爬虫也依赖于HTML标记来确定上下文和各个关键字的权重，利于SEO;</p>
+
+<p>使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。</p>
+</blockquote>
+
+<h4>8. HTML5的离线储存怎么使用，工作原理能不能解释一下？</h4>
+
+<blockquote>
+<p>在用户没有与因特网连接时，可以正常访问站点或应用，在用户与因特网连接时，更新用户机器上的缓存文件。</p>
+
+<p>原理：HTML5的离线存储是基于一个新建的.appcache文件的缓存机制(不是存储技术)，通过这个文件上的解析清单离线存储资源，这些资源就会像cookie一样被存储了下来。之后当网络在处于离线状态下时，浏览器会通过被离线存储的数据进行页面展示。</p>
+
+<p><strong>如何使用：</strong></p>
+</blockquote>
+
+<ol>
+	<li>页面头部像下面一样加入一个<code>manifest</code>的属性；</li>
+	<li><p>在<code>cache.manifest</code>文件的编写离线存储的资源；</p>
+
+		<p><code>CACHE MANIFEST</code></p>
+
+		<p><code>#v0.11</code></p>
+
+		<p><code>CACHE:</code></p>
+
+		<p><code>js/app.js</code></p>
+
+		<p><code>css/style.css</code></p>
+
+		<p><code>NETWORK:</code></p>
+
+		<p><code>resourse/logo.png</code></p>
+
+		<p><code>FALLBACK:</code></p>
+
+		<p><code>/ /offline.html</code></p></li>
+	<li>在离线状态时，操作<code>window.applicationCache</code>进行需求实现。</li>
+</ol>
+
+<h4>9. 浏览器是怎么对HTML5的离线储存资源进行管理和加载的呢？</h4>
+
+<blockquote>
+<p>在线的情况下，浏览器发现html头部有manifest属性，它会请求manifest文件，如果是第一次访问app，那么浏览器就会根据manifest文件的内容下载相应的资源并且进行离线存储。如果已经访问过app并且资源已经离线存储了，那么浏览器就会使用离线的资源加载页面，然后浏览器会对比新的manifest文件与旧的manifest文件，如果文件没有发生改变，就不做任何操作，如果文件改变了，那么就会重新下载文件中的资源并进行离线存储。</p>
+
+<p>离线的情况下，浏览器就直接使用离线存储的资源。</p>
+
+<p>fn: <a href="https://segmentfault.com/a/1190000000732617">有趣的HTML5：离线存储</a></p>
+</blockquote>
+
+<h4>10. 请描述一下 cookies，sessionStorage 和 localStorage 的区别？</h4>
+
+<blockquote>
+<p>cookie是网站为了标示用户身份而储存在用户本地终端（Client Side）上的数据（通常经过加密）。</p>
+
+<p>cookie数据始终在同源的http请求中携带（即使不需要），记会在浏览器和服务器间来回传递。</p>
+
+<p>sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存。</p>
+
+<p><strong>存储大小：</strong></p>
+
+<p>cookie数据大小不能超过4k。</p>
+
+<p>sessionStorage和localStorage 虽然也有存储大小的限制，但比cookie大得多，可以达到5M或更大。</p>
+
+<p><strong>有期时间：</strong></p>
+
+<p>localStorage 存储持久数据，浏览器关闭后数据不丢失除非主动删除数据；</p>
+
+<p>sessionStorage 数据在当前浏览器窗口关闭后自动删除。</p>
+
+<p>cookie 设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭</p>
+</blockquote>
+
+<h4>11. iframe有那些缺点？</h4>
+
+<blockquote>
+<p>iframe会阻塞主页面的Onload事件；</p>
+
+<p>搜索引擎的检索程序无法解读这种页面，不利于SEO;</p>
+
+<p>iframe和主页面共享连接池，而浏览器对相同域的连接有限制，所以会影响页面的并行加载。</p>
+
+<p>使用iframe之前需要考虑这两个缺点。如果需要使用iframe，最好是通过javascript</p>
+
+<p>动态给iframe添加src属性值，这样可以绕开以上两个问题。</p>
+</blockquote>
+
+<h4>12. Label的作用是什么？是怎么用的？</h4>
+
+<blockquote>
+<p>label标签来定义表单控制间的关系,当用户选择该标签时，浏览器会自动将焦点转到和标签相关的表单控件上。</p>
+
+<p><code>&lt;label for=&quot;Name&quot;&gt;Number:&lt;/label&gt;</code></p>
+
+<p><code>&lt;input type=“text“name=&quot;Name&quot; id=&quot;Name&quot;/&gt;</code></p>
+
+<p><code>&lt;label&gt;Date:&lt;input type=&quot;text&quot; name=&quot;B&quot;/&gt;&lt;/label&gt;</code></p>
+</blockquote>
+
+<h4>13. HTML5的form如何关闭自动完成功能？</h4>
+
+<blockquote>
+<p>给不想要提示的 form 或某个 input 设置为 autocomplete=off。</p>
+</blockquote>
+
+<h4>14. 如何实现浏览器内多个标签页之间的通信?</h4>
+
+<blockquote>
+<p>WebSocket、SharedWorker；</p>
+
+<p>也可以调用localstorge、cookies等本地存储方式；</p>
+
+<p>localstorge另一个浏览上下文里被添加、修改或删除时，它都会触发一个事件，</p>
+
+<p>我们通过监听事件，控制它的值来进行页面信息通信；</p>
+
+<p><strong>注意quirks：</strong>Safari 在无痕模式下设置localstorge值时会抛出 QuotaExceededError 的异常；</p>
+</blockquote>
+
+<h4>15. webSocket如何兼容低浏览器</h4>
+
+<blockquote>
+<p>Adobe Flash Socket 、</p>
+
+<p>ActiveX HTMLFile (IE) 、</p>
+
+<p>基于 multipart 编码发送 XHR 、</p>
+
+<p>基于长轮询的 XHR</p>
+</blockquote>
+
+<h4>16. 页面可见性（Page Visibility API） 可以有哪些用途？</h4>
+
+<blockquote>
+<p>通过 visibilityState 的值检测页面当前是否可见，以及打开网页的时间等;</p>
+
+<p>在页面被切换到其他后台进程的时候，自动暂停音乐或视频的播放；</p>
+</blockquote>
+
+<h4>17. 如何在页面上实现一个圆形的可点击区域？</h4>
+
+<ol>
+	<li>map+area或者svg</li>
+	<li>border-radius</li>
+	<li>纯js实现 需要求一个点在不在圆上简单算法、获取鼠标坐标等等</li>
+</ol>
+
+<h4>18. 实现不使用 border 画出1px高的线，在不同浏览器的标准模式与怪异模式下都能保持一致的效果。</h4>
+
+<blockquote>
+<p><code>&lt;div style=&quot;height:1px;overflow:hidden;background:gray&quot;&gt;&lt;/div&gt;</code></p>
+</blockquote>
+
+<h4>19. 网页验证码是干嘛的，是为了解决什么安全问题。</h4>
+
+<blockquote>
+<p>区分用户是计算机还是人的公共全自动程序。可以防止恶意破解密码、刷票、论坛灌水；</p>
+
+<p>有效防止黑客对某一个特定注册用户用特定程序暴力破解方式进行不断的登陆尝试。</p>
+</blockquote>
+
+<h4>20. title与h1的区别、b与strong的区别、i与em的区别？</h4>
+
+<blockquote>
+<p>title属性没有明确意义只表示是个标题，H1则表示层次明确的标题，对页面信息的抓取也有很大的影响；</p>
+
+<p>strong是标明重点内容，有语气加强的含义，使用阅读设备阅读网络时：&lt;strong&gt;会重读，而&lt;B&gt;是展示强调内容。</p>
+
+<p>i内容展示为斜体，em表示强调的文本；</p>
+
+<p>Physical Style Elements -- 自然样式标签</p>
+
+<p>b, i, u, s, pre</p>
+
+<p>Semantic Style Elements -- 语义样式标签</p>
+
+<p>strong, em, ins, del, code</p>
+
+<p>应该准确使用语义样式标签, 但不能滥用, 如果不能确定时首选使用自然样式标签。</p>
+</blockquote>
+
+<h2>CSS部分</h2>
+
+<h4>1. CSS选择符有哪些？哪些属性可以继承？</h4>
+
+<p>选择符有:</p>
+
+<ul>
+	<li>通配选择符 <code>*</code></li>
+	<li>类型选择符 <code>div</code></li>
+	<li>属性选择符 <code>E[attr]</code></li>
+	<li>包含选择符 <code>E1 E2</code></li>
+	<li>子对象选择符　<code>E1 &gt; E2</code></li>
+	<li>ID选择符 <code>#ID</code></li>
+	<li>类选择符 <code>E.className</code></li>
+	<li>选择符分组 <code>E1, E2, E3</code></li>
+	<li>伪类及伪对象选择符 <code>E:Pseudo-Classes</code></li>
+</ul>
+
+<p>可继承的有:</p>
+
+<ul>
+	<li><code>font-size</code></li>
+	<li><code>font-family</code></li>
+	<li><code>color</code></li>
+</ul>
+
+<p>不可继承的有:</p>
+
+<ul>
+	<li><code>border</code></li>
+	<li><code>padding</code></li>
+	<li><code>margin</code></li>
+	<li><code>background-color</code></li>
+	<li><code>width</code></li>
+	<li><code>height</code></li>
+	<li>等等</li>
+</ul>
+
+<h4>2. CSS优先级算法如何计算？</h4>
+
+<p>specificity用一个四位的数&nbsp;字串(CSS2是三位)来表示，更像四个级别，值从左到右，左面的最大，一级大于一级，数位之间没有进制，级别之间不可超越。</p>
+
+<p><code>!important &gt; id &gt; class &gt; tag &gt; *</code></p>
+
+<p>用1表示派生选择器的优先级&nbsp;</p>
+
+<p>用10表示类选择器的优先级&nbsp;</p>
+
+<p>用100标示ID选择器的优先级&nbsp;</p>
+
+<p>内联样式优先级1000</p>
+
+<p><code>!important</code>优先级最高</p>
+
+<p><code>*</code>优先级最低</p>
+
+<h4>3. CSS3新增伪类有那些？</h4>
+
+<p><code>p:first-of-type</code> 选择属于其父元素的首个 p 元素的每个 p 元素。<br/><code>p:last-of-type</code> 选择属于其父元素的最后 p 元素的每个 p 元素。<br/><code>p:only-of-type</code> 选择属于其父元素唯一的 p 元素的每个 p 元素。<br/><code>p:only-child</code> 选择属于其父元素的唯一子元素的每个 p 元素。<br/><code>p:nth-child(2)</code> 选择属于其父元素的第二个子元素的每个 p 元素。<br/><code>:enabled :disabled</code> 控制表单控件的禁用状态。<br/><code>:checked</code> 单选框或复选框被选中。</p>
+
+<p><code>E:nth-child(n)</code> 匹配所有在其父元素中排第n个的E元素。n可以是数字/关键字/公式</p>
+
+<p><code>:after</code> 在元素之前添加内容,也可以用来做清除浮动。</p>
+
+<p><code>:before</code> 在元素之后添加内容</p>
+
+<p><code>:enabled</code> </p>
+
+<p><code>:disabled</code> 控制表单控件的禁用状态。</p>
+
+<p><code>:checked</code> 单选框或复选框被选中。</p>
+
+<h4>4. 如何居中div？如何居中一个浮动元素？</h4>
+
+<ol>
+	<li>可以用<code>display:flex</code>相关代码居中</li>
+	<li>可以用<code>display:box</code>相关代码居中</li>
+	<li>可以设置宽度后<code>margin: 0 auto</code>居中</li>
+	<li>可以在父级设置<code>text-align</code>居中</li>
+	<li>居中浮动元素需要<code>left:50%</code>然后<code>margin-left: -width/2</code></li>
+	<li>居中决定定位div，设置上下左右为0，然后<code>margin:auto</code></li>
+</ol>
+
+<h4>5. 介绍一下标准的CSS的盒子模型？与IE的盒子模型有什么不同的？</h4>
+
+<ol>
+	<li>有两种， IE 盒子模型、W3C 盒子模型；</li>
+	<li>盒模型： 内容(content)、填充(padding)、边界(margin)、 边框(border)；</li>
+	<li>区 别： IE的content部分把 border 和 padding计算了进去;</li>
+</ol>
+
+<h4>6. display有哪些值？说明他们</h4>
+
+<ul>
+	<li>block 象块类型元素一样显示。</li>
+	<li>none 缺省值。象行内元素类型一样显示。</li>
+	<li>inline-block 象行内元素一样显示，但其内容象块类型元素一样显示。</li>
+	<li>list-item 象块类型元素一样显示，并添加样式列表标记。</li>
+	<li>table 此元素会作为块级表格来显示</li>
+	<li>inherit 规定应该从父元素继承 display 属性的值</li>
+</ul>
+
+<h4>7. position的值relative和absolute定位原点是？</h4>
+
+<ul>
+	<li>absolute 生成绝对定位的元素，相对于值不为 static的第一个父元素进行定位。</li>
+	<li>fixed （老IE不支持）生成绝对定位的元素，相对于浏览器窗口进行定位。</li>
+	<li>relative 生成相对定位的元素，相对于其正常位置进行定位。</li>
+	<li>static 默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right z-index 声明）。</li>
+	<li>inherit 规定从父元素继承 position 属性的值。</li>
+</ul>
+
+<h4>8. CSS3有哪些新特性？</h4>
+
+<blockquote>
+<p> 新增各种CSS选择器 （: not(.input)：所有 class 不是“input”的节点）</p>
+
+<p>圆角 （border-radius:8px）</p>
+
+<p>多列布局 （multi-column layout）</p>
+
+<p>阴影和反射 （ShadowReflect）</p>
+
+<p>文字特效 （text-shadow、）</p>
+
+<p>文字渲染 （Text-decoration）</p>
+
+<p>线性渐变 （gradient）</p>
+
+<p>旋转 （transform）</p>
+
+<p>增加了旋转,缩放,定位,倾斜,动画，多背景</p>
+
+<p>transform:scale(0.85,0.90) translate(0px,-30px) skew(-9deg,0deg)Animation:</p>
+</blockquote>
+
+<h4>9. 用纯CSS创建一个三角形的原理是什么？</h4>
+
+<p>把上、左、右三条边隐藏掉（颜色设为 transparent）</p>
+
+<h4>10. 一个满屏 品 字布局 如何设计?</h4>
+
+<p><strong>简单的方式：</strong></p>
+
+<blockquote>
+<p>上面的div宽100%，</p>
+
+<p>下面的两个div分别宽50%，</p>
+
+<p>然后用float或者inline使其不换行即可</p>
+</blockquote>
+
+<h4>11. 经常遇到的浏览器的兼容性有哪些？原因，解决方法是什么，常用hack的技巧 </h4>
+
+<blockquote>
+<ul>
+	<li>png24位的图片在iE6浏览器上出现背景，解决方案是做成PNG8.</li>
+	<li>浏览器默认的margin和padding不同。解决方案是加一个全局的<em>{margin:0;padding:0;}来统一。
+		</em></li>
+	<li><p>IE6双边距bug:块属性标签float后，又有横行的margin情况下，在ie6显示margin比设置的大。</p>
+
+		<p> 浮动ie产生的双倍距离 #box{ float:left; width:10px; margin:0 0 0 100px;}</p>
+
+		<p> 这种情况之下IE会产生20px的距离，解决方案是在float的标签样式控制中加入 ——<em>display:inline;将其转化为行内属性。(</em>这个符号只有ie6会识别)</p>
+
+		<p> 渐进识别的方式，从总体中逐渐排除局部。</p>
+
+		<p> 首先，巧妙的使用“9”这一标记，将IE游览器从所有情况中分离出来。</p>
+
+		<p> 接着，再次使用“+”将IE8和IE7、IE6分离开来，这样IE8已经独立识别。</p>
+
+		<p> <code>css</code></p>
+
+		<p><code>.bb{</code></p>
+
+		<p><code>background-color:#f1ee18;/*所有识别*/</code></p>
+
+		<p><code>.background-color:#00deff\9; /*IE6、7、8识别*/</code></p>
+
+		<p><code>+background-color:#a200ff;/*IE6、7识别*/</code></p>
+
+		<p><code>_background-color:#1e0bd1;/*IE6识别*/</code></p>
+
+		<p> <code>}</code></p></li>
+	<li><p> IE下,可以使用获取常规属性的方法来获取自定义属性,</p>
+
+		<p>也可以使用getAttribute()获取自定义属性;</p>
+
+		<p> Firefox下,只能使用getAttribute()获取自定义属性。</p>
+
+		<p> 解决方法:统一通过getAttribute()获取自定义属性。</p></li>
+	<li><p> IE下,even对象有x,y属性,但是没有pageX,pageY属性;</p>
+
+		<p> Firefox下,event对象有pageX,pageY属性,但是没有x,y属性。</p></li>
+	<li> 解决方法：（条件注释）缺点是在IE浏览器下可能会增加额外的HTTP请求数。</li>
+	<li><p> Chrome 中文界面下默认会将小于 12px 的文本强制按照 12px 显示,</p>
+
+		<p> 可通过加入 CSS 属性 -webkit-text-size-adjust: none; 解决。</p>
+
+		<p>超链接访问过后hover样式就不出现了 被点击访问过的超链接样式不在具有hover和active了解决方法是改变CSS属性的排列顺序:</p>
+
+		<p><code>L-V-H-A :  a:link {} a:visited {} a:hover {} a:active {}</code></p></li>
+</ul>
+</blockquote>
+
+<h4>12. li与li之间有看不见的空白间隔是什么原因引起的？有什么解决办法？</h4>
+
+<blockquote>
+<p>行框的排列会受到中间空白（回车空格）等的影响，因为空格也属于字符,这些空白也会被应用样式，占据空间，所以会有间隔，把字符大小设为0，就没有空格了。</p>
+</blockquote>
+
+<h4>13. 为什么要初始化CSS样式。</h4>
+
+<blockquote>
+<ul>
+	<li>因为浏览器的兼容问题，不同浏览器对有些标签的默认值是不同的，如果没对CSS初始化往往会出现浏览器之间的页面显示差异。</li>
+	<li>当然，初始化样式会对SEO有一定的影响，但鱼和熊掌不可兼得，但力求影响最小的情况下初始化。</li>
+	<li>最简单的初始化方法： <em> {padding: 0; margin: 0;} （强烈不建议）
+		</em></li>
+</ul>
+</blockquote>
+
+<h4>14. absolute的containing block(容器块)计算方式跟正常流有什么不同？</h4>
+
+<blockquote>
+<p>无论属于哪种，都要先找到其祖先元素中最近的 position 值不为 static 的元素，然后再判断：</p>
+
+<p>1、若此元素为 inline 元素，则 containing block 为能够包含这个元素生成的第一个和最后一个 inline box 的 padding box (除 margin, border 外的区域) 的最小矩形；</p>
+
+<p>2、否则,则由这个祖先元素的 padding box 构成。</p>
+
+<p>如果都找不到，则为 initial containing block。</p>
+
+<p>补充：</p>
+
+<ol>
+	<li>static(默认的)/relative：简单说就是它的父元素的内容框（即去掉padding的部分）</li>
+	<li>absolute: 向上找最近的定位为absolute/relative的元素</li>
+	<li>fixed: 它的containing block一律为根元素(html/body)，根元素也是initial containing block</li>
+</ol>
+</blockquote>
+
+<h4>15. 对BFC规范(块级格式化上下文：block formatting context)的理解？</h4>
+
+<blockquote>
+<p>（W3C CSS 2.1 规范中的一个概念,它是一个独立容器，决定了元素如何对其内容进行定位,以及与其他元素的关系和相互作用。）</p>
+
+<p>一个页面是由很多个 Box 组成的,元素的类型和 display 属性,决定了这个 Box 的类型。</p>
+
+<p>不同类型的 Box,会参与不同的 Formatting Context（决定如何渲染文档的容器）,因此Box内的元素会以不同的方式渲染,也就是说BFC内部的元素和外部的元素不会互相影响。</p>
+</blockquote>
+
+<h4>16. 使用 CSS 预处理器吗？喜欢那个？</h4>
+
+<blockquote>
+<p>sass, 现在是用scss写后缀</p>
+</blockquote>
+
+<h4>17. 如果需要手动写动画，你认为最小时间间隔是多久，为什么？（阿里）</h4>
+
+<blockquote>
+<p>多数显示器默认频率是60Hz，即1秒刷新60次，所以理论上最小间隔为1/60＊1000ms ＝ 16.7ms</p>
+</blockquote>
+
+<h4>18. display:inline-block 什么时候会显示间隙？(携程)</h4>
+
+<blockquote>
+<p>移除空格、使用margin负值、使用font-size:0、letter-spacing、word-spacing</p>
+</blockquote>
+
+<h4>19. 什么是Cookie 隔离？（或者说：请求资源的时候不要让它带cookie怎么做）</h4>
+
+<blockquote>
+<p>如果静态文件都放在主域名下，那静态文件请求的时候都带有的cookie的数据提交给server的，非常浪费流量，所以不如隔离开。</p>
+
+<p>因为cookie有域的限制，因此不能跨域提交请求，故使用非主要域名的时候，请求头中就不会带有cookie数据，这样可以降低请求头的大小，降低请求时间，从而达到降低整体请求延时的目的。</p>
+
+<p>同时这种方式不会将cookie传入Web Server，也减少了Web Server对cookie的处理分析环节，提高了webserver的http请求的解析速度。</p>
+</blockquote>
+
+<h4>20. 什么是CSS 预处理器 / 后处理器？</h4>
+
+<blockquote>
+<p>预处理器例如：LESS、Sass、Stylus，用来预编译Sass或less，增强了css代码的复用性，还有层级、mixin、变量、循环、函数等，具有很方便的UI组件模块化开发能力，极大的提高工作效率。</p>
+
+<p>后处理器例如：PostCSS，通常被视为在完成的样式表中根据CSS规范处理CSS，让其更有效；目前最常做的是给CSS属性添加浏览器私有前缀，实现跨浏览器兼容性的问题。</p>
+</blockquote>
+
+
+</body>
+</html>
